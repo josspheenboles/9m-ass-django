@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 def book_list(request):
-    return HttpResponse('<h1>List</h1')
+    return  render(request,'book/list.html',{})
+    # return HttpResponse('<h1>List</h1')
 def book_add(request):
     return HttpResponse('<h1>Add</h1')
 def book_update(request,name):
