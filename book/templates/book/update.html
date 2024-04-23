@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block title%}
+    Book _ Update
+{%endblock%}
+{%block content%}
+<form method="post">
+    {%csrf_token%}
+    {{form}}
+    <input type="submit" value="update">
+</form>
+<div style="color:red">
+    {{msg}}
+</div>
+{%endblock%}

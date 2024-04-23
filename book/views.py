@@ -21,7 +21,17 @@ def book_add(request):
     return render(request,'book/new.html',context)
     # return HttpResponse('<h1>Add</h1')
 def book_update(request,title):
-    return HttpResponse('<h1>update</h1')
+    # return HttpResponse('<h1>update</h1')
+    context={}
+    form=NewBookFormModel(instance=Book.objects.filter(title=title).first())
+    if(request.method=='POST'):
+        form = NewBookFormModel(instance=Book.objects.filter(title=title).first(),data=request.POST)
+        if(form.is_valid()):
+            form.save()
+            return HttpResponseRedirect('/Book/List/')
+    context['form']=form
+
+    return render(request, 'book/update.html', context)
 def book_delete(request,id):
     Book.objects.filter(id=id).delete()
     return HttpResponseRedirect('/Book/List')
