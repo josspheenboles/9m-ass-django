@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block title%}
+    Book _ {{book.title}}
+{%endblock%}
+{%block content%}
+<table border="1" width="100%">
+        <tr>
+             <td>Title:</td>
+             <td>{{book.title}}</td>
+        </tr>
+        <tr>
+             <td>Version:</td>
+             <td>{{book.version}}</td>
+        </tr>
+        <tr>
+             <td>Image:</td>
+             <td>{{book.image}}</td>
+        </tr>
+
+
+</table>
+{%endblock%}

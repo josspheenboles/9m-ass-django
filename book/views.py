@@ -14,4 +14,5 @@ def book_update(request,title):
 def book_delete(request,id):
     return HttpResponse('<h1>delete</h1')
 def book_details(request,id):
-    return HttpResponse('<h1>details</h1')
+    book=Book.objects.get(id=id)
+    return render(request,'book/details.html',{'book':book})
