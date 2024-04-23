@@ -3,5 +3,28 @@
     Book _ List
 {%endblock%}
 {%block content%}
-    List
+<table border="1" width="100%">
+         <tr>
+             <td>Title</td>
+             <td>Version</td>
+             <td>Image</td>
+             <td>Actions</td>
+         </tr>
+         {%for book in books%}
+                        <tr>
+<!--                            <td>{{book.id}}</td>-->
+                            <td>{{book.title}}</td>
+                            <td>{{book.version}}</td>
+                            <td>
+                                {{book.image}}
+                            </td>
+                            <td>
+                                <a href="{%url 'book_details' book.id%}">Show</a>
+                                <a href="{%url 'book_delete' book.id%}">Delete</a>
+                                <a href="{%url 'book_update' book.title%}">Update</a>
+                            </td>
+                        </tr>
+
+{%endfor%}
+</table>
 {%endblock%}
