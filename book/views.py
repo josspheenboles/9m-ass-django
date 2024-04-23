@@ -15,7 +15,7 @@ def book_add(request):
         if(request.POST['title'] is '' or request.POST['version'] is '' or request.POST['author'] is ''):
             context['msg']="kindly fill all fileds"
         else:
-            Book.addbook(request.POST['title'],request.POST['version'],request.POST['image'],request.POST['author'])
+            Book.addbook(request.POST['title'],request.POST['version'],request.FILES['image'],request.POST['author'])
             return HttpResponseRedirect('/Book/List/')
     print(request.POST)
     return render(request,'book/new.html',context)

@@ -6,7 +6,7 @@ class Book(models.Model):
     publish_date=models.DateTimeField(auto_now_add=True)
     modified_date=models.DateTimeField(auto_now=True)
     version=models.IntegerField(default=1)
-    image=models.CharField(max_length=100)
+    image=models.ImageField(upload_to='book/images')
     author=models.ForeignKey(Author,on_delete=models.CASCADE)
 
     @classmethod
