@@ -3,7 +3,13 @@ from django.http import HttpResponse,HttpResponseRedirect
 from .models import *
 from .forms import *
 from django.views import View
+from django.views.generic import ListView
 # Create your views here.
+class BookList(ListView):
+    model = Book
+    template_name = 'book/list.html'
+    context_object_name = 'books'
+
 def book_list(request):
     context={}
     context['books']=Book.objects.all()
