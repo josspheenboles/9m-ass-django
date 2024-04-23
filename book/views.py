@@ -1,6 +1,7 @@
 from django.shortcuts import render,reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import *
+from .forms import *
 # Create your views here.
 def book_list(request):
     context={}
@@ -8,7 +9,17 @@ def book_list(request):
     return  render(request,'book/list.html',context)
     # return HttpResponse('<h1>List</h1')
 def book_add(request):
-    return HttpResponse('<h1>Add</h1')
+    context={}
+    context['form']=NewBookForm()
+    if(request.method=='POST'):
+        if(request.POST['title'] is '' or request.POST['version'] is '' or request.POST['author'] is ''):
+            context['msg']="kindly fill all fileds"
+        else:
+            Book.addbook(request.POST['title'],request.POST['version'],request.POST['image'],request.POST['author'])
+            return HttpResponseRedirect('/Book/List/')
+    print(request.POST)
+    return render(request,'book/new.html',context)
+    # return HttpResponse('<h1>Add</h1')
 def book_update(request,title):
     return HttpResponse('<h1>update</h1')
 def book_delete(request,id):
