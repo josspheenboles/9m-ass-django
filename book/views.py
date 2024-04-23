@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,reverse
+from django.http import HttpResponse,HttpResponseRedirect
 from .models import *
 # Create your views here.
 def book_list(request):
@@ -12,7 +12,9 @@ def book_add(request):
 def book_update(request,title):
     return HttpResponse('<h1>update</h1')
 def book_delete(request,id):
-    return HttpResponse('<h1>delete</h1')
+    Book.objects.filter(id=id).delete()
+    return HttpResponseRedirect('/Book/List')
+    # return HttpResponse('<h1>delete</h1')
 def book_details(request,id):
     book=Book.objects.get(id=id)
     return render(request,'book/details.html',{'book':book})
