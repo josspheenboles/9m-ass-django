@@ -78,14 +78,14 @@ WSGI_APPLICATION = 'ass9m.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME':'ass9m.sqlite',
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME':'ass9m',
-        # 'USER':'root',
-        # 'PASSWORD':'123',
-        # 'HOST':'localhost',
-        # 'PORT':3306
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME':'ass9m.sqlite',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'ass9m',
+        'USER':'root',
+        'PASSWORD':'123',
+        'HOST':'localhost',
+        'PORT':3306
     }
 }
 
