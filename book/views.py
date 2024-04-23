@@ -2,12 +2,31 @@ from django.shortcuts import render,reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import *
 from .forms import *
+from django.views import View
 # Create your views here.
 def book_list(request):
     context={}
     context['books']=Book.objects.all()
     return  render(request,'book/list.html',context)
     # return HttpResponse('<h1>List</h1')
+class BookAdd(View):
+    def get(self,request):
+        print('get')
+        context={}
+        context['form'] = NewBookForm()
+        print(request.POST)
+        return render(request, 'book/new.html', context)
+    def post(self,request):
+        print('post')
+        context={}
+        if (request.POST['title'] is '' or request.POST['version'] is '' or request.POST['author'] is ''):
+            context['msg'] = "kindly fill all fileds"
+        else:
+            Book.addbook(request.POST['title'], request.POST['version'], request.POST['image'],
+                         request.POST['author'])
+            return HttpResponseRedirect('/Book/List/')
+
+
 def book_add(request):
     context={}
     context['form']=NewBookForm()
